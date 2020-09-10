@@ -1,0 +1,73 @@
+1) Order by 
+
+	A) Descending order
+	
+		= 
+			mysql> select *from student order by STD_ID DESC;
+			+--------+----------+------+---------+---------+-------+------------+
+			| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+			+--------+----------+------+---------+---------+-------+------------+
+			|     34 | Shubham  |   88 |      77 |      85 |   250 |         83 |
+			|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+			|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+			|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+			|      2 | Namrata  |   78 |      89 |      65 |   232 |         77 |
+			+--------+----------+------+---------+---------+-------+------------+
+			5 rows in set (0.00 sec)
+	
+	B) Ascending order
+	
+		=		
+
+			mysql> select *from student order by STD_Name ASC;
+			+--------+----------+------+---------+---------+-------+------------+
+			| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+			+--------+----------+------+---------+---------+-------+------------+
+			|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+			|      2 | Namrata  |   78 |      89 |      65 |   232 |         77 |
+			|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+			|     34 | Shubham  |   88 |      77 |      85 |   250 |         83 |
+			|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+			+--------+----------+------+---------+---------+-------+------------+
+			5 rows in set (0.00 sec)
+		
+			
+2) group by 
+
+	mysql> select *from city1;
+	+----+--------+------------+
+	| NO | City   | Population |
+	+----+--------+------------+
+	|  1 | Pune   |     200000 |
+	|  2 | Mumbai |     400000 |
+	|  3 | Nashik |     300000 |
+	|  4 | Pune   |     600000 |
+	|  5 | Mumbai |     800000 |
+	+----+--------+------------+
+	5 rows in set (0.00 sec)
+	
+	
+	mysql> select City,AVG(Population) from city1 group by City;
+	+--------+-----------------+
+	| City   | AVG(Population) |
+	+--------+-----------------+
+	| Mumbai |     600000.0000 |
+	| Nashik |     300000.0000 |
+	| Pune   |     400000.0000 |
+	+--------+-----------------+
+	3 rows in set (0.00 sec)
+
+
+	mysql> select City,AVG(Population) from city1 group by city having avg(Population)>300000;
+	+--------+-----------------+
+	| City   | AVG(Population) |
+	+--------+-----------------+
+	| Mumbai |     600000.0000 |
+	| Pune   |     400000.0000 |
+	+--------+-----------------+
+	2 rows in set (0.00 sec)
+
+
+
+	
+

@@ -1,0 +1,269 @@
+1) insert command different types:
+	
+	a) mysql> insert into emp(emp_no,emp_name,salary) values (10,"Vishal",100000);
+	   Query OK, 1 row affected (0.07 sec)
+	
+	b) mysql> insert into emp values (11,"Namrata",110000);
+	   Query OK, 1 row affected (0.06 sec)
+
+
+	# MULTIPLE ROWS INSERTION AT ONCE
+	
+	c)  mysql> insert into emp values (12,"Asim",120000),
+    		-> (13,"Shubham",130000),
+   		-> (14,"Nilesh",140000);
+	    Query OK, 3 rows affected (0.06 sec)
+            Records: 3  Duplicates: 0  Warnings: 0
+            
+2) Delete command 
+	
+	a)  Delete all rows:-
+		=   
+		    mysql> delete from emp;
+		    Query OK, 5 rows affected (0.07 sec)
+	
+	b) Delete selected row
+		=   
+		     mysql> delete from emp where emp_no=10;
+  	             Query OK, 1 row affected (0.12 sec)
+  	             
+  	             # where clause is used here to delete selective row.
+  	             
+
+3) Update command
+		
+			syntax:   update (table name) set (column name)=(value);
+			
+			(we can also use 'Where' clause here)
+			=
+			
+				mysql> update emp set salary=0;
+				Query OK, 4 rows affected (0.06 sec)
+				Rows matched: 4  Changed: 4  Warnings: 0
+			=
+				mysql> update emp set salary=234 where emp_name="Namrata";
+				Query OK, 1 row affected (0.04 sec)
+				Rows matched: 1  Changed: 1  Warnings: 0
+
+4) show tables;
+
+	=
+		mysql> show tables;
+		+------------------+
+		| Tables_in_vishal |
+		+------------------+
+		| emp              |
+		+------------------+
+		1 row in set (0.00 sec)
+
+5) show tables;
+	
+	=
+		mysql> show full tables;
+		+------------------+------------+
+		| Tables_in_vishal | Table_type |
+		+------------------+------------+
+		| emp              | BASE TABLE |
+		+------------------+------------+
+		1 row in set (0.00 sec)
+
+
+6) Select command:
+	
+	=
+		#to show only selective column from table
+	
+		mysql> select emp_name from emp;
+		+----------+
+		| emp_name |
+		+----------+
+		| Namrata  |
+		| Vishal   |
+		| Shubham  |
+		| Nilesh   |
+		+----------+
+		4 rows in set (0.00 sec)
+		
+		#where clause
+		
+		mysql> select emp_name from emp where emp_no=13;
+		+----------+
+		| emp_name |
+		+----------+
+		| Shubham  |
+		+----------+
+		1 row in set (0.01 sec)
+
+
+		# to show more than one selective columns from table
+		mysql> select emp_name,salary from emp;
+		+----------+--------+
+		| emp_name | salary |
+		+----------+--------+
+		| Namrata  |    234 |
+		| Vishal   |      0 |
+		| Shubham  |      0 |
+		| Nilesh   |      0 |
+		+----------+--------+
+		4 rows in set (0.00 sec)
+		
+		
+		A)count=   to count total number of rows in a column
+		
+			mysql> select count(STD_ID) from student;
+			+---------------+
+			| count(STD_ID) |
+			+---------------+
+			|             5 |
+			+---------------+
+			1 row in set (0.00 sec)
+			
+		B) MAX=  to show largest number in the column
+		
+			mysql> select MAX(Percentage) from student;
+			+-----------------+
+			| MAX(Percentage) |
+			+-----------------+
+			|              92 |
+			+-----------------+
+			1 row in set (0.00 sec)
+			
+		4) MIN= to show the minimum number in the column
+		
+			mysql> select MIN(Percentage) from student;
+			+-----------------+
+			| MIN(Percentage) |
+			+-----------------+
+			|              77 |
+			+-----------------+
+			1 row in set (0.00 sec)	
+		
+		5) AVG= calculate the average of data in the column
+		
+			mysql> select AVG(Percentage) from student;
+			+-----------------+
+			| AVG(Percentage) |
+			+-----------------+
+			|         85.4000 |
+			+-----------------+
+			1 row in set (0.00 sec)
+			
+	       6) SUM= addition of all data in the column
+	       	
+	       		mysql> select SUM(Total) from student;
+			+------------+
+			| SUM(Total) |
+			+------------+
+			|       1283 |
+			+------------+
+			1 row in set (0.00 sec)
+			
+		7)Upper case= turn the character in the selected column into upper case
+		
+			mysql> select UPPER(STD_Name) from student;
+			+-----------------+
+			| UPPER(STD_Name) |
+			+-----------------+
+			| NAMRATA         |
+			| VISHAL          |
+			| ASIM            |
+			| PRIYA           |
+			| SHUBHAM         |
+			+-----------------+
+			5 rows in set (0.04 sec)
+			
+		8)mysql> select LOWER(STD_Name) from student;
+		+-----------------+
+		| LOWER(STD_Name) |
+		+-----------------+
+		| namrata         |
+		| vishal          |
+		| asim            |
+		| priya           |
+		| shubham         |
+		+-----------------+
+		5 rows in set (0.00 sec)	
+				
+
+
+	
+7) truncate command 
+
+	= To empty the whole table  (means all the rows get deleted)
+	
+		mysql> truncate emp;
+		Query OK, 0 rows affected (0.17 sec)
+		
+		NOTE=====   delete from (table name);    is same as  =====truncate (table name);    command.
+		
+8)NOt equal to command (!=)
+
+	=	
+		mysql> select *from student;
+		+--------+----------+------+---------+---------+-------+------------+
+		| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+		+--------+----------+------+---------+---------+-------+------------+
+		|      2 | Namrata  |   78 |      89 |      65 |   232 |         77 |
+		|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+		|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+		|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+		|     34 | Shubham  |   88 |      77 |      85 |   250 |         83 |
+		+--------+----------+------+---------+---------+-------+------------+
+		5 rows in set (0.00 sec)
+		
+		mysql> select *from student where STD_ID!=34;
+		+--------+----------+------+---------+---------+-------+------------+
+		| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+		+--------+----------+------+---------+---------+-------+------------+
+		|      2 | Namrata  |   78 |      89 |      65 |   232 |         77 |
+		|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+		|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+		|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+		+--------+----------+------+---------+---------+-------+------------+
+		4 rows in set (0.01 sec)
+		
+9) AND command
+
+	=
+		mysql> select *from student where Math>80 and Science>80;
+		+--------+----------+------+---------+---------+-------+------------+
+		| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+		+--------+----------+------+---------+---------+-------+------------+
+		|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+		|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+		|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+		+--------+----------+------+---------+---------+-------+------------+
+		3 rows in set (0.00 sec)
+		
+10) OR command
+
+	=	
+		mysql> select *from student where Math>80 or Science>70;
+		+--------+----------+------+---------+---------+-------+------------+
+		| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+		+--------+----------+------+---------+---------+-------+------------+
+		|      2 | Namrata  |   78 |      89 |      65 |   232 |         77 |
+		|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+		|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+		|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+		|     34 | Shubham  |   88 |      77 |      85 |   250 |         83 |
+		+--------+----------+------+---------+---------+-------+------------+
+		5 rows in set (0.00 sec)
+		
+11) NOT in command
+
+	=
+		mysql> select *from student where STD_ID NOT  in(2,34);
+		+--------+----------+------+---------+---------+-------+------------+
+		| STD_ID | STD_Name | Math | Science | English | Total | Percentage |
+		+--------+----------+------+---------+---------+-------+------------+
+		|     12 | Vishal   |   89 |      99 |      80 |   268 |         89 |
+		|     17 | Asim     |   83 |      89 |      85 |   257 |         86 |
+		|     23 | Priya    |   91 |      92 |      93 |   276 |         92 |
+		+--------+----------+------+---------+---------+-------+------------+
+		3 rows in set (0.00 sec)
+		
+
+
+
+
