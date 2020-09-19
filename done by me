@@ -56,7 +56,7 @@
 		+------------------+
 		1 row in set (0.00 sec)
 
-5) show tables;
+5) show full tables;
 	
 	=
 		mysql> show full tables;
@@ -183,6 +183,35 @@
 		| shubham         |
 		+-----------------+
 		5 rows in set (0.00 sec)	
+		
+		
+		
+		9) distinct in select query:-
+						mysql> select distinct City from city1;
+						+--------+
+						| City   |
+						+--------+
+						| Pune   |
+						| Mumbai |
+						| Nashik |
+						+--------+
+						3 rows in set (0.01 sec)
+						
+		10)all in select query;-
+				
+						mysql> select all City from city1;
+						+--------+
+						| City   |
+						+--------+
+						| Pune   |
+						| Mumbai |
+						| Nashik |
+						| Pune   |
+						| Mumbai |
+						+--------+
+						5 rows in set (0.00 sec)
+
+
 				
 
 

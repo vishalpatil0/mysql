@@ -69,5 +69,252 @@
 
 
 
+3) as :-
+		mysql> select *from city1;
+		+----+--------+------------+
+		| NO | City   | Population |
+		+----+--------+------------+
+		|  1 | Pune   |     200000 |
+		|  2 | Mumbai |     400000 |
+		|  3 | Nashik |     300000 |
+		|  4 | Pune   |     600000 |
+		|  5 | Mumbai |     800000 |
+		+----+--------+------------+
+		5 rows in set (0.00 sec)
+		
+		mysql> select city as vishal from city1;
+		+--------+
+		| vishal |
+		+--------+
+		| Pune   |
+		| Mumbai |
+		| Nashik |
+		| Pune   |
+		| Mumbai |
+		+--------+
+		5 rows in set (0.00 sec)
+
+4) operation in select query:-
+		
+			mysql> select Population/100000 from city1;
+			+-------------------+
+			| Population/100000 |
+			+-------------------+
+			|            2.0000 |
+			|            4.0000 |
+			|            3.0000 |
+			|            6.0000 |
+			|            8.0000 |
+			+-------------------+
+			5 rows in set (0.03 sec)
+			
+			mysql> select Population/100000 from city1;
+			+-------------------+
+			| Population/100000 |
+			+-------------------+
+			|            2.0000 |
+			|            4.0000 |
+			|            3.0000 |
+			|            6.0000 |
+			|            8.0000 |
+			+-------------------+
+			5 rows in set (0.03 sec)
+
+
+
+
+5))  RENAMING COLUMN NAME 
+
+	A) by rename command:-
+				alter table (table name) rename column (old column name) to (new column name);
+				
+	B) by change command:-
+	
+				alter table (table name) change (old column name) to (new column name) (datatype(length));
+				
+				
+				mysql> alter table city1 change cname City varchar(20);
+				Query OK, 0 rows affected (0.09 sec)
+				Records: 0  Duplicates: 0  Warnings: 0
+					
+
+6) like command:-
+
+		mysql> select cname from customer where  cname like 'G%';
+		+-------+
+		| cname |
+		+-------+
+		| Green |
+		+-------+
+		1 row in set (0.00 sec)
+		
+		mysql> CREATE TABLE t2 LIKE t1;
+		Query OK, 0 rows affected (0.23 sec)
+
+		
+7)union command:-
+
+		mysql> select cname from customer union select city from city1;
+		+--------+
+		| cname  |
+		+--------+
+		| Ram    |
+		| Reena  |
+		| Pune   |
+		| Mumbai |
+		| Nashik |
+		+--------+
+		5 rows in set (0.00 sec)
+		
+7)default:
+
+		mysql> create table tp(age int default 12);
+		Query OK, 0 rows affected (0.27 sec)
+
+		mysql> insert into tp values();
+		Query OK, 1 row affected (0.06 sec)
+
+		mysql> select *from tp;
+		+------+
+		| age  |
+		+------+
+		|   12 |
+		+------+
+		1 row in set (0.00 sec)
+
+   
+   		ANOTHER EXAMPLE OF DEFAULT
+   		
+   			mysql> desc tp;
+			+-------+-------------+------+-----+---------+-------+
+			| Field | Type        | Null | Key | Default | Extra |
+			+-------+-------------+------+-----+---------+-------+
+			| id    | int(11)     | YES  |     | 2       |       |
+			| name  | varchar(20) | YES  |     | NULL    |       |
+			| total | int(11)     | YES  |     | 100     |       |
+			+-------+-------------+------+-----+---------+-------+
+			3 rows in set (0.00 sec)			
+
+			mysql> insert into tp values(DEFAULT,"vishal",DEFAULT);
+			Query OK, 1 row affected (0.03 sec)
+
+			mysql> select *From tp;
+			+------+--------+-------+
+			| id   | name   | total |
+			+------+--------+-------+
+			|    2 | vishal |   100 |
+			+------+--------+-------+
+			1 row in set (0.00 sec)
+			
+8)
+
+	inner join  = show only common data 
+	
+	mysql> SELECT * FROM members;
+	+-----------+--------+
+	| member_id | name   |
+	+-----------+--------+
+	|         1 | John   |
+	|         2 | Jane   |
+	|         3 | Mary   |
+	|         4 | David  |
+	|         5 | Amelia |
+	+-----------+--------+
+	5 rows in set (0.00 sec)
+
+	mysql> SELECT * FROM committees;
+	+--------------+--------+
+	| committee_id | name   |
+	+--------------+--------+
+	|            1 | John   |
+	|            2 | Mary   |
+	|            3 | Amelia |
+	|            4 | Joe    |
+	+--------------+--------+
+	4 rows in set (0.00 sec)
+
+	mysql> select members.member_id,members.name,committees.committee_id,committees.name from members inner join committees on members.name=committees.name;
+	+-----------+--------+--------------+--------+
+	| member_id | name   | committee_id | name   |
+	+-----------+--------+--------------+--------+
+	|         1 | John   |            1 | John   |
+	|         3 | Mary   |            2 | Mary   |
+	|         5 | Amelia |            3 | Amelia |
+	+-----------+--------+--------------+--------+
+	3 rows in set (0.00 sec)
+
+	METHOD "USING" instead of "on table.column=table.column";
+
+	mysql> select members.member_id,members.name,committees.committee_id,committees.name from members inner join committees using(name);
+	+-----------+--------+--------------+--------+
+	| member_id | name   | committee_id | name   |
+	+-----------+--------+--------------+--------+
+	|         1 | John   |            1 | John   |
+	|         3 | Mary   |            2 | Mary   |
+	|         5 | Amelia |            3 | Amelia |
+	+-----------+--------+--------------+--------+
+	3 rows in set (0.01 sec)
+	
+10)	right join
+
+	mysql> select members.member_id,members.name,committees.committee_id,committees.name from members right join committees using(name);
+	+-----------+--------+--------------+--------+
+	| member_id | name   | committee_id | name   |
+	+-----------+--------+--------------+--------+
+	|         1 | John   |            1 | John   |
+	|         3 | Mary   |            2 | Mary   |
+	|         5 | Amelia |            3 | Amelia |
+	|      NULL | NULL   |            4 | Joe    |
+	+-----------+--------+--------------+--------+
+	4 rows in set (0.00 sec)
+	
+	left join
+	
+	mysql> select members.member_id,members.name,committees.committee_id,committees.name from members left join committees using(name) where 		committees.name is NULL;
+	+-----------+-------+--------------+------+
+	| member_id | name  | committee_id | name |
+	+-----------+-------+--------------+------+
+	|         2 | Jane  |         NULL | NULL |
+	|         4 | David |         NULL | NULL |
+	+-----------+-------+--------------+------+
+	2 rows in set (0.00 sec)
+	
+	mysql> SELECT 
+	    ->     m.member_id, 
+	    ->     m.name member, 
+	    ->     c.committee_id, 
+	    ->     c.name committee
+	    -> FROM
+	    ->     members m
+	    -> CROSS JOIN committees c;
+	+-----------+--------+--------------+-----------+
+	| member_id | member | committee_id | committee |
+	+-----------+--------+--------------+-----------+
+	|         1 | John   |            1 | John      |
+	|         1 | John   |            2 | Mary      |
+	|         1 | John   |            3 | Amelia    |
+	|         1 | John   |            4 | Joe       |
+	|         2 | Jane   |            1 | John      |
+	|         2 | Jane   |            2 | Mary      |
+	|         2 | Jane   |            3 | Amelia    |
+	|         2 | Jane   |            4 | Joe       |
+	|         3 | Mary   |            1 | John      |
+	|         3 | Mary   |            2 | Mary      |
+	|         3 | Mary   |            3 | Amelia    |
+	|         3 | Mary   |            4 | Joe       |
+	|         4 | David  |            1 | John      |
+	|         4 | David  |            2 | Mary      |
+	|         4 | David  |            3 | Amelia    |
+	|         4 | David  |            4 | Joe       |
+	|         5 | Amelia |            1 | John      |
+	|         5 | Amelia |            2 | Mary      |
+	|         5 | Amelia |            3 | Amelia    |
+	|         5 | Amelia |            4 | Joe       |
+	+-----------+--------+--------------+-----------+
+	20 rows in set (0.00 sec)
+
+
+		
+
 	
 
