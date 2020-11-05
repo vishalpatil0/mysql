@@ -1,0 +1,48 @@
+1) to show the database commmands:
+
+	a) 	SHOW DATABASES LIKE 'dbname';
+	
+	b)	SELECT SCHEMA_NAME
+		FROM INFORMATION_SCHEMA.SCHEMATA
+		WHERE SCHEMA_NAME = 'DBName'
+		
+		Note: Above command is never used by me.
+	
+	c)	CREATE DATABASE IF NOT EXISTS DBName; 
+	
+		Note: It will also create database if its not exists.
+
+2)	select &colname from class1 where id=&id
+		
+	It takes input while executing the query.
+
+	select &&colname from class1 order by &colname desc;
+
+	&& stores the values in define list
+
+	SQL> define
+DEFINE _DATE           = "03-NOV-20" (CHAR)
+DEFINE _CONNECT_IDENTIFIER = "XE" (CHAR)
+DEFINE _USER           = "SYSTEM" (CHAR)
+DEFINE _PRIVILEGE      = "" (CHAR)
+DEFINE _SQLPLUS_RELEASE = "1002000100" (CHAR)
+DEFINE _EDITOR         = "Notepad" (CHAR)
+DEFINE _O_VERSION      = "Oracle Database 10g Express Edition Release 10.2.0.1.0 - Production" (CHAR)
+DEFINE _O_RELEASE      = "1002000100" (CHAR)
+DEFINE COLNAME         = "name" (CHAR)
+SQL> undefine colname
+
+	define eno=121
+
+	store the value in micro 
+	by this we use it as   &eno
+
+3) concat function takes only two input 
+	that why we have to use nested concat(concat(a,b),c)	
+
+4) flashback table tablename to before drop;
+	to recover table from recycle bin
+
+   drop table tablename purge; 
+	to permanantaly delete a table
+
