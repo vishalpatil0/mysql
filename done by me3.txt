@@ -46,3 +46,6 @@ SQL> undefine colname
    drop table tablename purge; 
 	to permanantaly delete a table
 
+5)
+	set serveroutput on
+	to see the output after running plsql block
